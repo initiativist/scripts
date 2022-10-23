@@ -1,4 +1,12 @@
-package main
+package go_ops
+
+func add_custom_array_space(smallerArray []string, amount int) []string {
+	largerArray := make([]string, len(smallerArray), cap(smallerArray)+amount)
+	copy(largerArray, smallerArray)
+	largerArray = largerArray[0 : len(smallerArray)+amount]
+	smallerArray = largerArray
+	return smallerArray
+}
 
 func split_string_on_character(value string, splitStr string) []string {
 	result := make([]string, 1, 2)
