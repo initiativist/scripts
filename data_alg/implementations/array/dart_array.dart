@@ -67,8 +67,12 @@ void main(List<String> args) {
           continue;
         }
 
-        var index = int.parse(insertArgs[0]);
+        var index = int.tryParse(insertArgs[0]);
         var value = insertArgs[1];
+        if (index == null || index > myArray.length() || index < 0) {
+          stdout.write("\n! UNKOWN INDEX \n");
+          continue;
+        }
 
         myArray.insert(index, value);
         break;
