@@ -1,4 +1,4 @@
-use std::env;
+use std::{env, io};
 
 struct MyArray {
     _my_array: Vec<String>
@@ -21,12 +21,38 @@ impl MyArray {
 fn main() {
     let my_array = MyArray { _my_array: env::args().collect::<Vec<String>>()[1..].to_vec() };
     my_array.traverse();
-    //let run_process: bool = true;
-    //println!("{:?}", args);
+    let mut run_process: bool = true;
 
-    //while run_process {
-        //let command: String;
+    while run_process {
+        let mut command = String::new();
         
-        //io::stdin().read_line(buf: &mut command).expect("Failed to read input");
-    //}
+        match io::stdin().read_line(&mut command) {
+            Ok(_i) => {
+
+                if command.is_empty() || command.len() != 1 {
+                    println!("\n! UNKNOWN COMMAND \n");
+                }
+                
+                match command.as_str() {
+                    "x" => {
+                        run_process = false;
+                        continue;
+                    },
+                    "t" => {
+                        my_array.traverse();
+                    },
+                    "h" => {
+                        println!("\nt: traverse\nx: exit\ni: insert")
+                    },
+                    &_ => {
+                        println!("\n! UNKNOWN COMMAND \n")
+                    }
+                }
+            }
+            Err(_error) => {
+                println!("\n! UNKNOWN COMMAND \n")
+            }
+        }
+
+    }
 }
