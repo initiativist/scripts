@@ -28,20 +28,19 @@ fn main() {
         
         match io::stdin().read_line(&mut command) {
             Ok(_i) => {
-
-                if command.is_empty() || command.len() != 1 {
+                if command.is_empty() || command.len() != 2 {
                     println!("\n! UNKNOWN COMMAND \n");
                 }
                 
                 match command.as_str() {
-                    "x" => {
+                    "x\n" => {
                         run_process = false;
                         continue;
                     },
-                    "t" => {
+                    "t\n" => {
                         my_array.traverse();
                     },
-                    "h" => {
+                    "h\n" => {
                         println!("\nt: traverse\nx: exit\ni: insert")
                     },
                     &_ => {
