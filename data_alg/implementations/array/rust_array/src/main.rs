@@ -1,4 +1,4 @@
-use std::{env, io};
+use std::{env, io::{self, stdout, Write}};
 
 struct MyArray {
     _my_array: Vec<String>
@@ -26,21 +26,25 @@ fn main() {
     while run_process {
         let mut command = String::new();
         
+        print!("list perform:");
+        
+        stdout().flush().expect("stdout flush failed");
+        
         match io::stdin().read_line(&mut command) {
             Ok(_i) => {
                 if command.is_empty() || command.len() != 2 {
                     println!("\n! UNKNOWN COMMAND \n");
                 }
                 
-                match command.as_str() {
-                    "x\n" => {
+                match &command[..1] {
+                    "x" => {
                         run_process = false;
                         continue;
                     },
-                    "t\n" => {
+                    "t" => {
                         my_array.traverse();
                     },
-                    "h\n" => {
+                    "h" => {
                         println!("\nt: traverse\nx: exit\ni: insert")
                     },
                     &_ => {
