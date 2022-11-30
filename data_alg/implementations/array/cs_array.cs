@@ -1,7 +1,7 @@
 using System;
 
-// mcs -out:compiled/traverse_7.exe traverse_7.cs
-// mono compiled/traverse_7.exe
+// mcs -out:compiled/cs_array.exe cs_array.cs
+// mono compiled/cs_array.exe
 
 class traverse_7
 {
@@ -11,23 +11,24 @@ class traverse_7
         MyArray myArray = new MyArray(args);
         
         while (true) {
-            const string command = Console.ReadLine();
+            var command = Console.ReadLine();
             if (command.Length != 1) {
                 Console.WriteLine("\n! UNKNOWN COMMAND\n");
             }
 
             switch (command)
             {
-                case 'h':
+                case "h":
                     Console.WriteLine("\nt: traverse\nx: exit\ni: insert\n");
                     break;
-                case 't':
+                case "t":
                     myArray.traverse();
                     break;
-                case 'x':
+                case "x":
                     return;
                 default:
                     Console.WriteLine("\n! UNKNOWN COMMAND\n");
+                    break;
             }
         }
     }
